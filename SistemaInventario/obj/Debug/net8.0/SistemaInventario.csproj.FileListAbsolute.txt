@@ -164,3 +164,4 @@ C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.pdb
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.genruntimeconfig.cache
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\ref\SistemaInventario.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.sourcelink.json

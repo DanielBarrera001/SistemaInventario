@@ -1,0 +1,58 @@
+﻿@page "/agregar-proveedor"
+@page "/editar-proveedor/{ProveedorId:int}"
+@inject SistemaInventario.ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@using SistemaInventario.Models
+@rendermode InteractiveServer
+
+<h3>@(esNuevoProveedor ? "Agregar" : "Editar") Proveedor</h3>
+
+<div class="card p-4">
+    <EditForm Model="proveedor" OnValidSubmit="ManejarEnvio" FormName="proveedorForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <InputText id="nombre" class="form-control" @bind-Value="proveedor.Nombre" />
+        </div>
+        <div class="mb-3">
+            <label for="contacto" class="form-label">Contacto</label>
+            <InputText id="contacto" class="form-control" @bind-Value="proveedor.Contacto" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/proveedores" class="btn btn-secondary">Cancelar</a>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ProveedorId { get; set; }
+
+    private Proveedor proveedor = new();
+    private bool esNuevoProveedor => ProveedorId == null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!esNuevoProveedor)
+        {
+            proveedor = await DbContext.Proveedores.FindAsync(ProveedorId);
+        }
+    }
+
+    private async Task ManejarEnvio()
+    {
+        if (esNuevoProveedor)
+        {
+            DbContext.Proveedores.Add(proveedor);
+        }
+        else
+        {
+            DbContext.Proveedores.Update(proveedor);
+        }
+
+        await DbContext.SaveChangesAsync();
+
+        Navigation.NavigateTo("/proveedores");
+    }
+}

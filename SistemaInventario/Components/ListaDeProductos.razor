@@ -1,0 +1,71 @@
+﻿@page "/productos"
+@inject SistemaInventario.ApplicationDbContext dbContext
+@using Microsoft.EntityFrameworkCore
+@using SistemaInventario.Models
+@rendermode InteractiveServer
+
+<h3>Lista de Productos</h3>
+
+<div class="mb-3">
+    <a href="/agregar-producto" class="btn btn-primary">Agregar Producto</a>
+</div>
+
+@if (productos == null)
+{
+    <p><em>Cargando productos...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in productos)
+            {
+                <tr>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Descripcion</td>
+                    <td>@producto.Precio.ToString("C")</td>
+                    <td>@producto.Stock</td>
+                    <td>@producto.Proveedor.Nombre</td>
+                    <td>
+                        <a href="/editar-producto/@producto.Id" class="btn btn-warning btn-sm me-2">Editar</a>
+                        <button @onclick="() => EliminarProducto(producto.Id)" class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Producto> productos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Carga los productos con su proveedor asociado para mostrar el nombre.
+        productos = await dbContext.Productos.Include(p => p.Proveedor).ToListAsync();
+    }
+
+    private async Task EliminarProducto(int productoId)
+    {
+        var productoAEliminar = await dbContext.Productos.FindAsync(productoId);
+        if (productoAEliminar != null)
+        {
+            dbContext.Productos.Remove(productoAEliminar);
+            await dbContext.SaveChangesAsync();
+
+            // Recarga la lista para reflejar el cambio.
+            productos = await dbContext.Productos.Include(p => p.Proveedor).ToListAsync();
+            StateHasChanged(); // Notifica a Blazor que la UI debe actualizarse.
+        }
+    }
+}

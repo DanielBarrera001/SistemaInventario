@@ -1,0 +1,92 @@
+﻿@page "/agregar-producto"
+@page "/editar-producto/{ProductoId:int}"
+@inject SistemaInventario.ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@using Microsoft.EntityFrameworkCore
+@using SistemaInventario.Models
+@rendermode InteractiveServer
+
+<h3>@(esNuevoProducto ? "Agregar" : "Editar") Producto</h3>
+
+<div class="card p-4">
+    <EditForm Model="producto" OnValidSubmit="ManejarEnvio" FormName="productoForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <InputText id="nombre" class="form-control" @bind-Value="producto.Nombre" />
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <InputTextArea id="descripcion" class="form-control" @bind-Value="producto.Descripcion" />
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <InputNumber id="precio" class="form-control" @bind-Value="producto.Precio" />
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <InputNumber id="stock" class="form-control" @bind-Value="producto.Stock" />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="proveedor" class="form-label">Proveedor</label>
+            <InputSelect id="proveedor" class="form-control" @bind-Value="producto.ProveedorId">
+                @if (proveedores != null)
+                {
+                    @foreach (var proveedor in proveedores)
+                    {
+                        <option value="@proveedor.Id">@proveedor.Nombre</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/productos" class="btn btn-secondary">Cancelar</a>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public int? ProductoId { get; set; }
+
+    private Producto producto = new();
+    private List<Proveedor> proveedores;
+    private bool esNuevoProducto => ProductoId == null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        proveedores = await DbContext.Proveedores.ToListAsync();
+
+        if (!esNuevoProducto)
+        {
+            producto = await DbContext.Productos.FindAsync(ProductoId);
+        }
+        else
+        {
+            if (proveedores.Any())
+            {
+                producto.ProveedorId = proveedores.First().Id;
+            }
+        }
+    }
+
+    private async Task ManejarEnvio()
+    {
+        if (esNuevoProducto)
+        {
+            DbContext.Productos.Add(producto);
+        }
+        else
+        {
+            DbContext.Productos.Update(producto);
+        }
+
+        await DbContext.SaveChangesAsync();
+
+        Navigation.NavigateTo("/productos");
+    }
+}
