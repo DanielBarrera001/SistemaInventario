@@ -10,6 +10,15 @@ namespace SistemaInventario
         }
 
         public DbSet<Producto> Productos { get; set; }
-        public DbSet<Proveedor> Proveedores { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Producto>()
+                .HasIndex(p => p.CodigoBarras)
+                .IsUnique();
+        }
+
+        public DbSet<Movimiento> Movimientos { get; set; } 
+
     }
 }

@@ -1,0 +1,90 @@
+﻿@page "/reingreso-producto"
+@inject SistemaInventario.ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@using Microsoft.EntityFrameworkCore
+@using SistemaInventario.Models
+@rendermode InteractiveServer
+
+<h3>Reingreso de Productos Existentes</h3>
+
+<div class="card p-4">
+    <div class="mb-3">
+        <label for="codigoBarras" class="form-label">Código de Barras</label>
+        <input type="text" id="codigoBarras" class="form-control" @bind="codigoBarras" placeholder="Escribe o escanea el código..." />
+    </div>
+    <div class="d-flex">
+        <button class="btn btn-info me-2" @onclick="BuscarProducto">Buscar Producto</button>
+        <a href="/listaproductos" class="btn btn-secondary">Cancelar</a>
+    </div>
+
+    @if (productoEncontrado != null)
+    {
+        <hr />
+        <h4>Información del Producto</h4>
+        <div class="mb-3">
+            <p><strong>Nombre:</strong> @productoEncontrado.Nombre</p>
+            <p><strong>Descripción:</strong> @productoEncontrado.Descripcion</p>
+            <p><strong>Stock Actual:</strong> @productoEncontrado.Stock</p>
+        </div>
+
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad a Reingresar</label>
+            <input type="number" id="cantidad" class="form-control" @bind="cantidadReingreso" />
+        </div>
+
+        <button class="btn btn-success" @onclick="ActualizarStock">Actualizar Stock</button>
+    }
+    else if (!string.IsNullOrEmpty(mensajeError))
+    {
+        <div class="alert alert-danger mt-3">@mensajeError</div>
+    }
+</div>
+
+@code {
+    private string codigoBarras = string.Empty;
+    private Producto productoEncontrado;
+    private int cantidadReingreso;
+    private string mensajeError = string.Empty;
+
+    private async Task BuscarProducto()
+    {
+        mensajeError = string.Empty;
+        productoEncontrado = null;
+        
+        if (string.IsNullOrWhiteSpace(codigoBarras))
+        {
+            mensajeError = "Por favor, ingresa un código de barras.";
+            return;
+        }
+
+        productoEncontrado = await DbContext.Productos.FirstOrDefaultAsync(p => p.CodigoBarras == codigoBarras);
+
+        if (productoEncontrado == null)
+        {
+            mensajeError = "Producto no encontrado. ¿Deseas crearlo?";
+            Navigation.NavigateTo($"/agregar-producto?Codigo={codigoBarras}");
+        }
+    }
+
+private async Task ActualizarStock()
+{
+    if (productoEncontrado != null && cantidadReingreso > 0)
+    {
+        productoEncontrado.Stock += cantidadReingreso;
+        DbContext.Productos.Update(productoEncontrado);
+
+        // Crear y guardar el nuevo movimiento
+        var nuevoMovimiento = new Movimiento
+        {
+            Tipo = TipoMovimiento.Ingreso,
+            Cantidad = cantidadReingreso,
+            Fecha = DateTime.Now,
+            ProductoId = productoEncontrado.Id
+        };
+        DbContext.Movimientos.Add(nuevoMovimiento);
+        
+        await DbContext.SaveChangesAsync();
+        Navigation.NavigateTo("/listaproductos");
+    }
+}
+}

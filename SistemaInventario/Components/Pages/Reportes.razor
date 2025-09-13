@@ -1,0 +1,185 @@
+﻿@page "/reportes"
+@inject SistemaInventario.ApplicationDbContext DbContext
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+@using Microsoft.EntityFrameworkCore
+@using SistemaInventario.Models
+@using iText.Kernel.Colors
+@using iText.Kernel.Pdf
+@using iText.Layout
+@using iText.Layout.Element
+@using iText.Layout.Properties
+@rendermode InteractiveServer
+
+<h3>Generar Reportes</h3>
+
+<div class="card p-4">
+    <div class="mb-3">
+        <label for="tipoReporte" class="form-label">Tipo de Reporte</label>
+        <select id="tipoReporte" class="form-select" @bind="tipoReporteSeleccionado">
+            <option value="Diario">Diario</option>
+            <option value="Mensual">Mensual</option>
+            <option value="PorProducto">Por Producto</option>
+        </select>
+    </div>
+
+    @if (tipoReporteSeleccionado == "Diario")
+    {
+        <div class="mb-3">
+            <label for="fechaDiaria" class="form-label">Seleccionar Día</label>
+            <input type="date" id="fechaDiaria" class="form-control" @bind="fechaReporteDiario" max="@fechaActualString" />
+        </div>
+    }
+
+    @if (tipoReporteSeleccionado == "Mensual")
+    {
+        <div class="mb-3">
+            <label for="fechaMensual" class="form-label">Seleccionar Mes y Año</label>
+            <input type="month" id="fechaMensual" class="form-control" @bind="fechaReporteMensual" />
+        </div>
+    }
+
+    @if (tipoReporteSeleccionado == "PorProducto")
+    {
+        <div class="mb-3">
+            <label for="producto" class="form-label">Seleccionar Producto</label>
+            <select id="producto" class="form-select" @bind="productoSeleccionadoId">
+                <option value="0">Seleccione un producto...</option>
+                @foreach (var producto in productos)
+                {
+                    <option value="@producto.Id">@producto.Nombre (@(producto.CodigoBarras ?? "N/A"))</option>
+                }
+            </select>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(mensajeError))
+    {
+        <div class="alert alert-danger">@mensajeError</div>
+    }
+
+    <button class="btn btn-primary" @onclick="GenerarReporte">Generar Reporte PDF</button>
+</div>
+
+
+@code {
+    private string tipoReporteSeleccionado = "Diario";
+    private DateTime fechaReporteDiario = DateTime.Now;
+    private DateTime fechaReporteMensual = DateTime.Now;
+    private int productoSeleccionadoId = 0;
+    private string fechaActualString;
+    private List<Producto> productos = new();
+    private string mensajeError = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        fechaActualString = DateTime.Now.ToString("yyyy-MM-dd");
+        productos = await DbContext.Productos.ToListAsync();
+    }
+
+    private async Task GenerarReporte()
+    {
+        mensajeError = string.Empty;
+        List<Movimiento> movimientos = new();
+        string titulo = string.Empty;
+
+        switch (tipoReporteSeleccionado)
+        {
+            case "Diario":
+                if (fechaReporteDiario > DateTime.Now)
+                {
+                    mensajeError = "La fecha no puede ser futura.";
+                    return;
+                }
+                movimientos = await DbContext.Movimientos
+                    .Include(m => m.Producto)
+                    .Where(m => m.Fecha.Date == fechaReporteDiario.Date)
+                    .OrderByDescending(m => m.Fecha)
+                    .ToListAsync();
+                titulo = $"Reporte Diario - {fechaReporteDiario.ToString("dd/MM/yyyy")}";
+                break;
+            case "Mensual":
+                movimientos = await DbContext.Movimientos
+                    .Include(m => m.Producto)
+                    .Where(m => m.Fecha.Month == fechaReporteMensual.Month && m.Fecha.Year == fechaReporteMensual.Year)
+                    .OrderByDescending(m => m.Fecha)
+                    .ToListAsync();
+                titulo = $"Reporte Mensual - {fechaReporteMensual.ToString("MMMM yyyy")}";
+                break;
+            case "PorProducto":
+                if (productoSeleccionadoId == 0)
+                {
+                    mensajeError = "Debe seleccionar un producto.";
+                    return;
+                }
+                movimientos = await DbContext.Movimientos
+                    .Include(m => m.Producto)
+                    .Where(m => m.ProductoId == productoSeleccionadoId)
+                    .OrderByDescending(m => m.Fecha)
+                    .ToListAsync();
+                var producto = productos.FirstOrDefault(p => p.Id == productoSeleccionadoId);
+                titulo = $"Reporte por Producto: {producto?.Nombre}";
+                break;
+        }
+
+        if (!movimientos.Any())
+        {
+            mensajeError = "No se encontraron movimientos para generar el reporte.";
+            return;
+        }
+
+        // Llamar al método de generación de PDF
+        await GenerarPdf(movimientos, titulo);
+    }
+
+    private async Task GenerarPdf(List<Movimiento> movimientos, string titulo)
+    {
+        using (var stream = new MemoryStream())
+        {
+            var pdfWriter = new PdfWriter(stream);
+            var pdfDocument = new PdfDocument(pdfWriter);
+            var document = new Document(pdfDocument);
+
+            // 1. Encabezado del reporte
+            document.Add(new Paragraph("Tienda Juan")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFontSize(20));
+            document.Add(new Paragraph(titulo)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFontSize(16));
+            document.Add(new Paragraph($"Fecha de Exportación: {DateTime.Now.ToString("dd/MM/yyyy HH:mm")}")
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFontSize(12));
+            document.Add(new Paragraph(" ")); // Espacio
+
+            // 2. Tabla de movimientos
+            var table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2, 2 }));
+            table.SetWidth(UnitValue.CreatePercentValue(100));
+
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Código de Barras")).SetBackgroundColor(new DeviceRgb(220, 220, 220)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Producto")).SetBackgroundColor(new DeviceRgb(220, 220, 220)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Tipo")).SetBackgroundColor(new DeviceRgb(220, 220, 220)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Cantidad")).SetBackgroundColor(new DeviceRgb(220, 220, 220)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Fecha")).SetBackgroundColor(new DeviceRgb(220, 220, 220)));
+
+            foreach (var movimiento in movimientos)
+            {
+                table.AddCell(new Cell().Add(new Paragraph(movimiento.Producto.CodigoBarras ?? "N/A")));
+                table.AddCell(new Cell().Add(new Paragraph(movimiento.Producto.Nombre)));
+                table.AddCell(new Cell().Add(new Paragraph(movimiento.Tipo.ToString())));
+                table.AddCell(new Cell().Add(new Paragraph(movimiento.Cantidad.ToString())));
+                table.AddCell(new Cell().Add(new Paragraph(movimiento.Fecha.ToString("dd/MM/yyyy HH:mm"))));
+            }
+            document.Add(table);
+
+            document.Close();
+
+            // 3. Descargar el archivo
+            var fileName = $"Reporte_{tipoReporteSeleccionado}_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.pdf";
+            var bytes = stream.ToArray();
+
+            // Llama a la función JS para descargar el archivo
+            await JSRuntime.InvokeVoidAsync("saveAsFile", fileName, bytes);
+        }
+    }
+}

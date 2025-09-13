@@ -3,36 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\models\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\models\\proveedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\listadeproductos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\listadeproductos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\productoform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\productoform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\listadeproveedores.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\listadeproveedores.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\proveedorform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\proveedorform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\reportes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\reportes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,110 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ProveedorForm.razor",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ProveedorForm.razor",
-              "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\ProveedorForm.razor",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ProveedorForm.razor",
-              "RelativeToolTip": "SistemaInventario\\Components\\Pages\\ProveedorForm.razor",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-12T04:54:42.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ListaDeProveedores.razor",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ListaDeProveedores.razor",
-              "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\ListaDeProveedores.razor",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ListaDeProveedores.razor",
-              "RelativeToolTip": "SistemaInventario\\Components\\Pages\\ListaDeProveedores.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-12T04:53:06.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NavMenu.razor",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Layout\\NavMenu.razor",
-              "RelativeDocumentMoniker": "SistemaInventario\\Components\\Layout\\NavMenu.razor",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Layout\\NavMenu.razor",
-              "RelativeToolTip": "SistemaInventario\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-12T04:51:21.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductoForm.razor",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ProductoForm.razor",
-              "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\ProductoForm.razor",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ProductoForm.razor",
-              "RelativeToolTip": "SistemaInventario\\Components\\Pages\\ProductoForm.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-12T04:47:01.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "SistemaInventario\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\ApplicationDbContext.cs",
-              "RelativeToolTip": "SistemaInventario\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T04:22:27.921Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListaDeProductos.razor",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\ListaDeProductos.razor",
-              "RelativeDocumentMoniker": "SistemaInventario\\Components\\ListaDeProductos.razor",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\ListaDeProductos.razor",
-              "RelativeToolTip": "SistemaInventario\\Components\\ListaDeProductos.razor",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAEYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-12T04:35:41.726Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Producto.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Models\\Producto.cs",
-              "RelativeDocumentMoniker": "SistemaInventario\\Models\\Producto.cs",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Models\\Producto.cs",
-              "RelativeToolTip": "SistemaInventario\\Models\\Producto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T04:24:22.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Proveedor.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Models\\Proveedor.cs",
-              "RelativeDocumentMoniker": "SistemaInventario\\Models\\Proveedor.cs",
-              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Models\\Proveedor.cs",
-              "RelativeToolTip": "SistemaInventario\\Models\\Proveedor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T04:18:41.311Z",
+              "Title": "Reportes.razor",
+              "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\Reportes.razor",
+              "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\Reportes.razor",
+              "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\Reportes.razor",
+              "RelativeToolTip": "SistemaInventario\\Components\\Pages\\Reportes.razor",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-13T04:55:36.654Z",
               "EditorCaption": ""
             }
           ]

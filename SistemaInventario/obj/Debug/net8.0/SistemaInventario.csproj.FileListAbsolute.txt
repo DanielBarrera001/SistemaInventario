@@ -1,3 +1,4 @@
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\appsettings.json
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\SistemaInventario.staticwebassets.runtime.json
@@ -9,7 +10,24 @@ C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\SistemaInventario.pdb
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Humanizer.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.barcodes.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.bouncy-castle-connector.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.forms.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.io.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.kernel.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.layout.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.pdfa.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.pdfua.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.sign.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.styledxmlparser.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.svg.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.bouncy-castle-adapter.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\bc-fips-1.0.2.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\bcpkix-fips-1.0.2.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.bouncy-castle-fips-adapter.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\itext.commons.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -19,6 +37,7 @@ C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
@@ -149,6 +168,7 @@ C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.AssemblyInfo.cs
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.csproj.CoreCompileInputs.cache
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.sourcelink.json
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\scopedcss\bundle\SistemaInventario.styles.css
@@ -157,11 +177,9 @@ C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaI.D3F5EE3A.Up2Date
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\refint\SistemaInventario.dll
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.pdb
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.genruntimeconfig.cache
 C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\ref\SistemaInventario.dll
-C:\Users\Daniel\source\repos\SistemaInventario\SistemaInventario\obj\Debug\net8.0\SistemaInventario.sourcelink.json

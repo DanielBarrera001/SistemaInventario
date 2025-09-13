@@ -49,3 +49,16 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+/* Colores suaves para los tipos de movimiento */
+.movimiento-ingreso {
+    background-color: #e6f7ff !important; /* Azul suave */
+}
+
+.movimiento-salida {
+    background-color: #ffe6e6 !important; /* Rojo suave */
+}
+
+.movimiento-nuevo {
+    background-color: #e6ffe6 !important; /* Verde suave */
+}

@@ -1,0 +1,178 @@
+﻿@page "/control-movimientos"
+@inject SistemaInventario.ApplicationDbContext DbContext
+@using Microsoft.EntityFrameworkCore
+@using SistemaInventario.Models
+@rendermode InteractiveServer
+
+<h3>Control de Movimientos de Inventario</h3>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <label for="search" class="form-label">Buscar por Producto o Código</label>
+        <input type="text" id="search" class="form-control" placeholder="Escribe para buscar..." @bind-value="@filtroTexto" @bind-value:event="oninput" />
+    </div>
+    <div class="col-md-2">
+        <label for="tipoFiltro" class="form-label">Tipo de Movimiento</label>
+        <select id="tipoFiltro" class="form-select" @bind="@filtroTipo">
+            <option value="">Todos</option>
+            <option value="@TipoMovimiento.Ingreso">Ingreso</option>
+            <option value="@TipoMovimiento.Salida">Salida</option>
+            <option value="@TipoMovimiento.NuevoProducto">Nuevo Producto</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="startDate" class="form-label">Fecha de Inicio</label>
+        <input type="date" id="startDate" class="form-control" @bind-value="@filtroFechaInicio" max="@fechaActualString" />
+    </div>
+    <div class="col-md-3">
+        <label for="endDate" class="form-label">Fecha de Fin</label>
+        <input type="date" id="endDate" class="form-control" @bind-value="@filtroFechaFin" max="@fechaActualString" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 text-end">
+        <button class="btn btn-secondary me-2" @onclick="BorrarFiltros">Borrar Filtros</button>
+        <button class="btn btn-primary" @onclick="AplicarFiltros">Filtrar</button>
+    </div>
+</div>
+<hr />
+
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div class="alert alert-danger">@mensajeError</div>
+}
+@if (movimientosFiltrados == null)
+{
+    <p><em>Cargando movimientos...</em></p>
+}
+else if (!movimientosFiltrados.Any())
+{
+    <div class="alert alert-info">No se encontraron movimientos que coincidan con los criterios de búsqueda.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Código de Barras</th>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movimiento in movimientosFiltrados)
+            {
+                <tr class="@GetMovimientoClass(movimiento.Tipo)">
+                    <td>@(movimiento.Producto.CodigoBarras ?? "N/A")</td>
+                    <td>@movimiento.Producto.Nombre</td>
+                    <td>@movimiento.Tipo.ToString()</td>
+                    <td>@movimiento.Cantidad</td>
+                    <td>@movimiento.Fecha.ToString("dd/MM/yyyy hh:mm tt")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Movimiento> todosLosMovimientos;
+    private List<Movimiento> movimientosFiltrados;
+    private string filtroTexto = string.Empty;
+    private TipoMovimiento? filtroTipo;
+    private DateTime? filtroFechaInicio;
+    private DateTime? filtroFechaFin;
+    private string mensajeError = string.Empty;
+    private string fechaActualString;
+
+    protected override async Task OnInitializedAsync()
+    {
+        fechaActualString = DateTime.Now.ToString("yyyy-MM-dd");
+        await CargarMovimientos();
+    }
+
+    private async Task CargarMovimientos()
+    {
+        todosLosMovimientos = await DbContext.Movimientos
+            .Include(m => m.Producto)
+            .OrderByDescending(m => m.Fecha)
+            .ToListAsync();
+
+        movimientosFiltrados = todosLosMovimientos;
+    }
+
+    private void AplicarFiltros()
+    {
+        mensajeError = string.Empty;
+
+        // Validación de fecha de inicio no posterior a fecha de fin
+        if (filtroFechaInicio.HasValue && filtroFechaFin.HasValue && filtroFechaInicio.Value > filtroFechaFin.Value)
+        {
+            mensajeError = "Error: La fecha de inicio no puede ser posterior a la fecha de fin.";
+            return;
+        }
+
+        // Validación de fecha de fin no futura
+        if (filtroFechaFin.HasValue && filtroFechaFin.Value.Date > DateTime.Now.Date)
+        {
+            mensajeError = "Error: La fecha de fin no puede ser una fecha futura.";
+            return;
+        }
+
+        // Validación de fecha de inicio no futura
+        if (filtroFechaInicio.HasValue && filtroFechaInicio.Value.Date > DateTime.Now.Date)
+        {
+            mensajeError = "Error: La fecha de inicio no puede ser una fecha futura.";
+            return;
+        }
+
+        var tempMovimientos = todosLosMovimientos.AsEnumerable();
+
+        // ** Lógica de filtrado de texto corregida **
+        if (!string.IsNullOrWhiteSpace(filtroTexto))
+        {
+            tempMovimientos = tempMovimientos.Where(m =>
+                (m.Producto.Nombre != null && m.Producto.Nombre.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)) ||
+                (m.Producto.CodigoBarras != null && m.Producto.CodigoBarras.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)));
+        }
+
+        if (filtroTipo.HasValue)
+        {
+            tempMovimientos = tempMovimientos.Where(m => m.Tipo == filtroTipo.Value);
+        }
+
+        if (filtroFechaInicio.HasValue)
+        {
+            tempMovimientos = tempMovimientos.Where(m => m.Fecha.Date >= filtroFechaInicio.Value.Date);
+        }
+        if (filtroFechaFin.HasValue)
+        {
+            tempMovimientos = tempMovimientos.Where(m => m.Fecha.Date <= filtroFechaFin.Value.Date);
+        }
+
+        movimientosFiltrados = tempMovimientos.ToList();
+    }
+
+    private void BorrarFiltros()
+    {
+        filtroTexto = string.Empty;
+        filtroTipo = null;
+        filtroFechaInicio = null;
+        filtroFechaFin = null;
+        mensajeError = string.Empty;
+
+        AplicarFiltros();
+    }
+
+    private string GetMovimientoClass(TipoMovimiento tipo)
+    {
+        return tipo switch
+        {
+            TipoMovimiento.Ingreso => "movimiento-ingreso",
+            TipoMovimiento.Salida => "movimiento-salida",
+            TipoMovimiento.NuevoProducto => "movimiento-nuevo",
+            _ => string.Empty
+        };
+    }
+}

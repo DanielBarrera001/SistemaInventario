@@ -10,9 +10,8 @@ namespace SistemaInventario.Models
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         [Required]
-        public double Precio { get; set; }
+        public double? Precio { get; set; } 
         public int Stock { get; set; }
-        public int ProveedorId { get; set; }
-        public Proveedor Proveedor { get; set; }
+        public string CodigoBarras { get; set; }
     }
 }

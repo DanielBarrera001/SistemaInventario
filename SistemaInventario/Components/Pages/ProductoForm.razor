@@ -13,6 +13,18 @@
         <DataAnnotationsValidator />
         <ValidationSummary />
 
+        @if (!string.IsNullOrEmpty(mensajeError))
+        {
+            <div class="alert alert-danger" role="alert">
+                @mensajeError
+            </div>
+        }
+
+        <div class="mb-3">
+            <label for="codigoBarras" class="form-label">Código de Barras</label>
+            <InputText id="codigoBarras" class="form-control" @bind-Value="producto.CodigoBarras"
+                       disabled="@(!esNuevoProducto)" />
+        </div>
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <InputText id="nombre" class="form-control" @bind-Value="producto.Nombre" />
@@ -28,24 +40,13 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="stock" class="form-label">Stock</label>
-                <InputNumber id="stock" class="form-control" @bind-Value="producto.Stock" />
+                <InputNumber id="stock" class="form-control" @bind-Value="producto.Stock"
+                             disabled="@(!esNuevoProducto)" />
             </div>
-        </div>
-        <div class="mb-3">
-            <label for="proveedor" class="form-label">Proveedor</label>
-            <InputSelect id="proveedor" class="form-control" @bind-Value="producto.ProveedorId">
-                @if (proveedores != null)
-                {
-                    @foreach (var proveedor in proveedores)
-                    {
-                        <option value="@proveedor.Id">@proveedor.Nombre</option>
-                    }
-                }
-            </InputSelect>
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="/productos" class="btn btn-secondary">Cancelar</a>
+        <a href="/listaproductos" class="btn btn-secondary">Cancelar</a>
     </EditForm>
 </div>
 
@@ -54,31 +55,42 @@
     public int? ProductoId { get; set; }
 
     private Producto producto = new();
-    private List<Proveedor> proveedores;
     private bool esNuevoProducto => ProductoId == null;
+    private string mensajeError = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-        proveedores = await DbContext.Proveedores.ToListAsync();
-
         if (!esNuevoProducto)
         {
             producto = await DbContext.Productos.FindAsync(ProductoId);
-        }
-        else
-        {
-            if (proveedores.Any())
-            {
-                producto.ProveedorId = proveedores.First().Id;
-            }
         }
     }
 
     private async Task ManejarEnvio()
     {
+        mensajeError = string.Empty;
+
         if (esNuevoProducto)
         {
+            var productoExistente = await DbContext.Productos.FirstOrDefaultAsync(p => p.CodigoBarras == producto.CodigoBarras);
+            if (productoExistente != null)
+            {
+                mensajeError = "Error: Ya existe un producto con este código de barras.";
+                return;
+            }
+
             DbContext.Productos.Add(producto);
+            await DbContext.SaveChangesAsync();
+
+            // Registrar el movimiento de ingreso inicial como 'NuevoProducto'
+            var nuevoMovimiento = new Movimiento
+            {
+                Tipo = TipoMovimiento.NuevoProducto,
+                Cantidad = producto.Stock,
+                Fecha = DateTime.Now,
+                ProductoId = producto.Id
+            };
+            DbContext.Movimientos.Add(nuevoMovimiento);
         }
         else
         {
@@ -87,6 +99,6 @@
 
         await DbContext.SaveChangesAsync();
 
-        Navigation.NavigateTo("/productos");
+        Navigation.NavigateTo("/listaproductos");
     }
 }
