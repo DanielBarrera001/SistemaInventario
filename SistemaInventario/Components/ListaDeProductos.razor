@@ -1,16 +1,19 @@
 ﻿@page "/listaproductos"
 @inject SistemaInventario.ApplicationDbContext DbContext
+@inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
 @using SistemaInventario.Models
 @rendermode InteractiveServer
 
 <h3>Lista de Productos</h3>
-<a href="/agregar-producto" class="btn btn-primary mb-3">Agregar Nuevo Producto</a>
 
-<div class="mb-3 d-flex">
-    <input type="text" id="busqueda" class="form-control me-2" @bind="terminoBusqueda"
-           placeholder="Buscar por nombre o código de barras..." />
-    <button class="btn btn-info" @onclick="BuscarProductos">Buscar</button>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="/agregar-producto" class="btn btn-primary">Agregar Nuevo Producto</a>
+    <div class="d-flex">
+        <input type="text" id="busqueda" class="form-control me-2" @bind="terminoBusqueda"
+               placeholder="Buscar por nombre o código de barras..." />
+        <button class="btn btn-info" @onclick="BuscarProductos">Buscar</button>
+    </div>
 </div>
 
 @if (productosFiltrados == null)
@@ -40,7 +43,7 @@ else
                 <tr>
                     <td>@producto.CodigoBarras</td>
                     <td>@producto.Nombre</td>
-                    <td>@producto.Descripcion</td>
+                    <td>@(producto.Descripcion ?? "N/A")</td>
                     <td>@(producto.Precio?.ToString("C") ?? "$0.00")</td>
                     <td>@producto.Stock</td>
                     <td>
@@ -65,20 +68,20 @@ else
     }
 
     private void BuscarProductos()
-{
-    if (string.IsNullOrWhiteSpace(terminoBusqueda))
     {
-        productosFiltrados = todosLosProductos;
+        if (string.IsNullOrWhiteSpace(terminoBusqueda))
+        {
+            productosFiltrados = todosLosProductos;
+        }
+        else
+        {
+            productosFiltrados = todosLosProductos
+                .Where(p =>
+                    (p.Nombre != null && p.Nombre.Contains(terminoBusqueda, StringComparison.OrdinalIgnoreCase)) ||
+                    (p.CodigoBarras != null && p.CodigoBarras.Contains(terminoBusqueda, StringComparison.OrdinalIgnoreCase)))
+                .ToList();
+        }
     }
-    else
-    {
-        productosFiltrados = todosLosProductos
-            .Where(p => 
-                (p.Nombre != null && p.Nombre.Contains(terminoBusqueda, StringComparison.OrdinalIgnoreCase)) ||
-                (p.CodigoBarras != null && p.CodigoBarras.Contains(terminoBusqueda, StringComparison.OrdinalIgnoreCase)))
-            .ToList();
-    }
-}
 
     private async Task EliminarProducto(int productoId)
     {

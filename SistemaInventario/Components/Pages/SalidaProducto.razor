@@ -6,6 +6,7 @@
 @rendermode InteractiveServer
 
 <h3>Salida de Productos</h3>
+<hr />
 
 <div class="card p-4">
     <div class="mb-3">
@@ -80,7 +81,6 @@
                 productoEncontrado.Stock -= cantidadSalida;
                 DbContext.Productos.Update(productoEncontrado);
 
-                // Crear y guardar el nuevo movimiento
                 var nuevoMovimiento = new Movimiento
                 {
                     Tipo = TipoMovimiento.Salida,
@@ -99,5 +99,4 @@
             }
         }
     }
-
 }

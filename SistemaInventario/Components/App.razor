@@ -15,8 +15,7 @@
 <body>
     <Routes @rendermode="InteractiveServer" />
 
-    <script src="_framework/blazor.web.js"></script>
-
+    <script src="_framework/blazor.server.js"></script>
     <script>
         window.saveAsFile = (fileName, bytes) => {
             const blob = new Blob([bytes], { type: "application/pdf" });

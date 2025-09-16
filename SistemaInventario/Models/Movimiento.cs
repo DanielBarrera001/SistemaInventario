@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore; // Asegúrate de tener esta importación
 
 namespace SistemaInventario.Models
 {
@@ -29,6 +30,8 @@ namespace SistemaInventario.Models
         public int ProductoId { get; set; }
 
         [ForeignKey("ProductoId")]
+        // Agrega esta línea para restringir la eliminación en cascada.
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public Producto Producto { get; set; } // Propiedad de navegación
     }
 }
