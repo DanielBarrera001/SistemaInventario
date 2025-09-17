@@ -59,17 +59,21 @@ else
                 <th>Tipo</th>
                 <th>Cantidad</th>
                 <th>Fecha</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var movimiento in movimientosFiltrados)
             {
                 <tr class="@GetMovimientoClass(movimiento.Tipo)">
-                    <td>@(movimiento.Producto.CodigoBarras ?? "N/A")</td>
-                    <td>@movimiento.Producto.Nombre</td>
+                    <td>@(movimiento.Producto?.CodigoBarras ?? "N/A")</td>
+                    <td>@(movimiento.Producto?.Nombre ?? "Producto Eliminado")</td>
                     <td>@movimiento.Tipo.ToString()</td>
                     <td>@movimiento.Cantidad</td>
                     <td>@movimiento.Fecha.ToString("dd/MM/yyyy hh:mm tt")</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => EliminarMovimiento(movimiento.Id)">Eliminar</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -77,6 +81,7 @@ else
 }
 
 @code {
+    [Inject] private NavigationManager NavigationManager { get; set; }
     private List<Movimiento> todosLosMovimientos;
     private List<Movimiento> movimientosFiltrados;
     private string filtroTexto = string.Empty;
@@ -99,42 +104,41 @@ else
             .OrderByDescending(m => m.Fecha)
             .ToListAsync();
 
-        movimientosFiltrados = todosLosMovimientos;
+        AplicarFiltros();
     }
 
     private void AplicarFiltros()
     {
         mensajeError = string.Empty;
 
-        // Validación de fecha de inicio no posterior a fecha de fin
         if (filtroFechaInicio.HasValue && filtroFechaFin.HasValue && filtroFechaInicio.Value > filtroFechaFin.Value)
         {
             mensajeError = "Error: La fecha de inicio no puede ser posterior a la fecha de fin.";
+            movimientosFiltrados = new List<Movimiento>();
             return;
         }
 
-        // Validación de fecha de fin no futura
-        if (filtroFechaFin.HasValue && filtroFechaFin.Value.Date > DateTime.Now.Date)
-        {
-            mensajeError = "Error: La fecha de fin no puede ser una fecha futura.";
-            return;
-        }
-
-        // Validación de fecha de inicio no futura
         if (filtroFechaInicio.HasValue && filtroFechaInicio.Value.Date > DateTime.Now.Date)
         {
             mensajeError = "Error: La fecha de inicio no puede ser una fecha futura.";
+            movimientosFiltrados = new List<Movimiento>();
+            return;
+        }
+
+        if (filtroFechaFin.HasValue && filtroFechaFin.Value.Date > DateTime.Now.Date)
+        {
+            mensajeError = "Error: La fecha de fin no puede ser una fecha futura.";
+            movimientosFiltrados = new List<Movimiento>();
             return;
         }
 
         var tempMovimientos = todosLosMovimientos.AsEnumerable();
 
-        // ** Lógica de filtrado de texto corregida **
         if (!string.IsNullOrWhiteSpace(filtroTexto))
         {
             tempMovimientos = tempMovimientos.Where(m =>
-                (m.Producto.Nombre != null && m.Producto.Nombre.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)) ||
-                (m.Producto.CodigoBarras != null && m.Producto.CodigoBarras.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)));
+                (m.Producto?.Nombre != null && m.Producto.Nombre.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)) ||
+                (m.Producto?.CodigoBarras != null && m.Producto.CodigoBarras.Contains(filtroTexto, StringComparison.OrdinalIgnoreCase)));
         }
 
         if (filtroTipo.HasValue)
@@ -154,6 +158,19 @@ else
         movimientosFiltrados = tempMovimientos.ToList();
     }
 
+    private async Task EliminarMovimiento(int movimientoId)
+    {
+        var movimientoAEliminar = await DbContext.Movimientos.FindAsync(movimientoId);
+        if (movimientoAEliminar != null)
+        {
+            DbContext.Movimientos.Remove(movimientoAEliminar);
+            await DbContext.SaveChangesAsync();
+
+            // Cargar y aplicar los filtros de nuevo para actualizar la lista.
+            await CargarMovimientos();
+        }
+    }
+
     private void BorrarFiltros()
     {
         filtroTexto = string.Empty;
@@ -169,9 +186,9 @@ else
     {
         return tipo switch
         {
-            TipoMovimiento.Ingreso => "movimiento-ingreso",
-            TipoMovimiento.Salida => "movimiento-salida",
-            TipoMovimiento.NuevoProducto => "movimiento-nuevo",
+            TipoMovimiento.Ingreso => "table-success",
+            TipoMovimiento.Salida => "table-danger",
+            TipoMovimiento.NuevoProducto => "table-primary",
             _ => string.Empty
         };
     }

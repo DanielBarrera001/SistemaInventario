@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\controlmovimientos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\controlmovimientos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\layout\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -19,10 +23,6 @@
       "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\productoform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\components\\pages\\controlmovimientos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\components\\pages\\controlmovimientos.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|c:\\users\\daniel\\source\\repos\\sistemainventario\\sistemainventario\\migrations\\20250916063650_restriccionhistorial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3598223F-1DED-4AC9-8BA4-F84E8F304295}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\migrations\\20250916063650_restriccionhistorial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -34,24 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainLayout.razor",
               "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Layout\\MainLayout.razor",
               "RelativeDocumentMoniker": "SistemaInventario\\Components\\Layout\\MainLayout.razor",
               "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Layout\\MainLayout.razor",
               "RelativeToolTip": "SistemaInventario\\Components\\Layout\\MainLayout.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwA8AAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-16T06:51:13.786Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\Home.razor",
@@ -59,8 +59,7 @@
               "RelativeToolTip": "SistemaInventario\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAAG8AAAAAAAAAAAAswK8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-16T06:41:26.128Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T06:41:26.128Z"
             },
             {
               "$type": "Document",
@@ -72,12 +71,11 @@
               "RelativeToolTip": "SistemaInventario\\Migrations\\20250916063650_RestriccionHistorial.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T06:36:50.735Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T06:36:50.735Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Movimiento.cs",
               "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Models\\Movimiento.cs",
               "RelativeDocumentMoniker": "SistemaInventario\\Models\\Movimiento.cs",
@@ -85,12 +83,11 @@
               "RelativeToolTip": "SistemaInventario\\Models\\Movimiento.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAA1wCQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-16T06:35:35.236Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T06:35:35.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ProductoForm.razor",
               "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ProductoForm.razor",
               "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\ProductoForm.razor",
@@ -98,18 +95,17 @@
               "RelativeToolTip": "SistemaInventario\\Components\\Pages\\ProductoForm.razor",
               "ViewState": "AgIAAEcAAAAAAAAAAAAmwGcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-16T06:31:27.103Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-16T06:31:27.103Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "ControlMovimientos.razor",
               "DocumentMoniker": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ControlMovimientos.razor",
               "RelativeDocumentMoniker": "SistemaInventario\\Components\\Pages\\ControlMovimientos.razor",
               "ToolTip": "C:\\Users\\Daniel\\source\\repos\\SistemaInventario\\SistemaInventario\\Components\\Pages\\ControlMovimientos.razor",
               "RelativeToolTip": "SistemaInventario\\Components\\Pages\\ControlMovimientos.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAAAkwMIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-16T06:30:46.536Z",
               "EditorCaption": ""
